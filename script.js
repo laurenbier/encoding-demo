@@ -32,7 +32,32 @@ function shuffle(items) {
   }
   return copy;
 }
+function updateProgress(screenId){
+  const progress=$("experiment-progress");
+  if(screenId==="welcome"){
+    progress.classList.add("hidden");
+    return;
+  }
+  progress.classList.remove("hidden");
+  let stage, label;
+  if(screenId==="instruction" || screenId==="study"){
+    stage=session.blockIndex+1;
+    label=`Encoding block ${stage} of 3`;
+  }else if(screenId==="distractor-intro" || screenId==="distractor"){
+    stage=4; label="Distractor task";
+  }else if(screenId==="recall"){
+    stage=5; label="Final free recall";
+  }else{
+    stage=5; label="Experiment complete";
+  }
+  const percent=screenId==="results"?100:Math.round((stage-1)/5*100);
+  $("progress-label").textContent=label;
+  $("progress-percent").textContent=`${percent}% complete`;
+  $("progress-fill").style.width=`${percent}%`;
+  $("progress-track").setAttribute("aria-valuenow",String(percent));
+}
 function showScreen(id){
+  updateProgress(id);
   screens.forEach(name=>$(name).classList.toggle("hidden",name!==id));
   $("main").focus({preventScroll:true});
   window.scrollTo(0,0);
