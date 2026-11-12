@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#182b44">
+  <title>Encoding Strategies | Memory Experiment</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header"><div class="brand"><span class="brand-mark" aria-hidden="true">◈</span><span>MEMORY LAB <small>Encoding Strategies Experiment</small></span></div><span class="header-tag">PSYC 402 · Practice</span></header>
+    <main id="main" tabindex="-1">
+      <section id="welcome" class="panel screen" aria-labelledby="welcome-title">
+        <p class="eyebrow">BROWSER-BASED EXPERIMENT</p>
+        <h1 id="welcome-title">How do we remember words?</h1>
+        <p class="lead">Explore how three different ways of thinking about words relate to later memory.</p>
+        <div class="info-grid"><div><strong>18 words</strong><span>Three blocks of six</span></div><div><strong>3 strategies</strong><span>Rehearsal · Self-reference · Imagery</span></div><div><strong>1 recall test</strong><span>After a 30-second distractor</span></div></div>
+        <div class="notice"><strong>Before you begin</strong><p>Complete this in a quiet place. Read each instruction carefully. Do not write the words down or use outside aids. Word and strategy order are randomized for each session. This practice experiment keeps data in your browser only; you can download it at the end.</p></div>
+        <button id="start-btn" class="primary">Begin experiment <span aria-hidden="true">→</span></button>
+      </section>
+      <section id="instruction" class="panel screen hidden" aria-labelledby="instruction-title">
+        <p class="eyebrow" id="block-counter"></p><h1 id="instruction-title"></h1><p class="lead" id="instruction-description"></p>
+        <div class="notice"><strong>What to do</strong><p id="instruction-detail"></p></div>
+        <p class="subtle">You will see six words, one at a time, for 4 seconds each. The words advance automatically. Focus on using the strategy throughout the block.</p>
+        <button id="begin-block-btn" class="primary">Start this block <span aria-hidden="true">→</span></button>
+      </section>
+      <section id="study" class="panel screen hidden study-screen" aria-labelledby="study-title">
+        <p class="eyebrow" id="study-block-label"></p><h1 id="study-title" class="visually-hidden">Study the word</h1>
+        <p id="study-strategy" class="strategy-label"></p><div class="word-card"><p class="subtle">Remember this word</p><div id="study-word" class="study-word" aria-live="off"></div></div>
+        <p id="word-count" class="subtle" aria-live="off"></p><div class="timer-track" aria-hidden="true"><div id="word-timer" class="timer-fill"></div></div>
+        <p class="subtle">The next word will appear automatically.</p>
+      </section>
+      <section id="distractor-intro" class="panel screen hidden" aria-labelledby="distractor-intro-title">
+        <p class="eyebrow">ALL STUDY BLOCKS COMPLETE</p><h1 id="distractor-intro-title">A short counting task</h1><p class="lead">For 30 seconds, count backward by 3 from the number shown. Type each answer and press Enter (or click Submit number). Continue until time runs out.</p>
+        <div class="notice">Try to work steadily and accurately. Do not rehearse the studied words during this task. The recall test will begin automatically when the timer ends.</div>
+        <button id="begin-distractor-btn" class="primary">Begin 30-second task <span aria-hidden="true">→</span></button>
+      </section>
+      <section id="distractor" class="panel screen hidden" aria-labelledby="distractor-title">
+        <p class="eyebrow">DISTRACTOR TASK</p><h1 id="distractor-title">Count backward by 3</h1>
+        <div class="countdown" aria-live="off"><span id="seconds-left">30</span><small>seconds remaining</small></div>
+        <p class="subtle">Start at <strong id="starting-number"></strong>. Subtract 3 each time.</p>
+        <form id="count-form" autocomplete="off"><label for="count-input">Next number</label><div class="input-row"><input id="count-input" type="number" inputmode="numeric" required placeholder="Enter a number"><button type="submit" class="secondary">Submit number</button></div></form>
+        <p id="count-feedback" class="subtle" aria-live="polite">Keep going until the timer finishes.</p><p class="subtle">Numbers entered: <span id="count-total">0</span></p>
+      </section>
+      <section id="recall" class="panel screen hidden" aria-labelledby="recall-title">
+        <p class="eyebrow">FINAL MEMORY TEST</p><h1 id="recall-title">What words do you remember?</h1>
+        <p class="lead">Type as many of the 18 studied words as you can remember, from any block and in any order. You do not need to identify the encoding strategy.</p>
+        <label for="recall-input">Your recalled words</label><textarea id="recall-input" rows="8" spellcheck="false" placeholder="Type words separated by commas, spaces, or new lines..."></textarea>
+        <p class="subtle">Capitalization does not matter. Minor spelling errors that preserve the word's meaning are accepted. Enter single words, not sentences. You can submit when finished.</p>
+        <button id="submit-recall-btn" class="primary">Submit recall and view results <span aria-hidden="true">→</span></button>
+      </section>
+      <section id="results" class="panel screen hidden" aria-labelledby="results-title">
+        <p class="eyebrow">SESSION COMPLETE</p><h1 id="results-title">Your recall results</h1><p class="lead">Scores are grouped by the encoding strategy used when each word was studied.</p>
+        <div id="score-cards" class="score-grid"></div><p id="total-score" class="total-score"></p>
+        <div class="notice"><strong>Download your practice data</strong><p>The summary CSV has one data row for this session. The trial-level CSV has 18 data rows, one per studied word. Both files are generated locally in your browser; nothing is uploaded to GitHub.</p></div>
+        <div class="button-row"><button id="download-summary-btn" class="primary">Download summary CSV ↓</button><button id="download-trials-btn" class="secondary">Download trial-level CSV ↓</button></div>
+        <button id="restart-btn" class="text-button">Start a new randomized session ↻</button>
+      </section>
+    </main>
+    <footer>St. Lawrence University · PSYC 402 · Educational practice experiment</footer>
+  </div>
+</body>
+</html>
